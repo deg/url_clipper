@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Copy URL to Clipboard</title>
-  </head>
-  <body>
-    <button id="copyUrlBtn">Copy URL</button>
-    <script src="popup.js"></script>
-  </body>
+<head>
+  <title>Copy URL</title>
+  <style>
+    body {
+      width: 250px;
+    }
+    #icon {
+      width: 128px;
+      height: 128px;
+      margin: 10px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <img id="icon" src="assets/simple_clipboard_icon_128.png" alt="Copy URL" />
+  <button id="copyUrlBtn">Copy URL to Clipboard</button>
+  <script src="popup.js"></script>
+</body>
 </html>
