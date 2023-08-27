@@ -3,20 +3,22 @@
 <head>
   <title>Copy URL</title>
   <style>
-    body {
-      width: 250px;
-    }
     #icon {
       width: 128px;
       height: 128px;
       margin: 10px auto;
       display: block;
     }
+    #copyUrlBtn {
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <img id="icon" src="assets/simple_clipboard_icon_128.png" alt="Copy URL" />
-  <button id="copyUrlBtn">Copy URL to Clipboard</button>
+  <button id="copyUrlBtn">
+    <img id="icon" src="assets/simple_clipboard_icon_128.png" alt="Copy URL"/>
+    Copy URL to Clipboard
+  </button>
   <script src="popup.js"></script>
 </body>
 </html>
