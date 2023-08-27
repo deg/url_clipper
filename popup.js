@@ -1,16 +1,14 @@
-// Main function to initialize the extension
 const initializeExtension = () => {
   const copyUrlBtn = document.getElementById("copyUrlBtn");
   copyUrlBtn.addEventListener("click", copyFilteredUrlToClipboard);
 };
 
-// Copy filtered URL to clipboard
 const copyFilteredUrlToClipboard = async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   let url = tab.url;
 
-  url = removeTrackingParams(url);
   url = transformChromeExtensionURL(url);
+  url = removeTrackingParams(url);
 
   navigator.clipboard.writeText(url).then(
     () => console.log("Filtered URL copied to clipboard"),
@@ -18,24 +16,24 @@ const copyFilteredUrlToClipboard = async () => {
   );
 };
 
-// Initialize the extension when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initializeExtension);
-
-// Helper Functions
 
 // Remove tracking parameters from the URL
+const TRACKING_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 const removeTrackingParams = (url) => {
   const parsedUrl = new URL(url);
   const params = parsedUrl.searchParams;
-  const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-
-  trackingParams.forEach((param) => params.delete(param));
-
+  TRACKING_PARAMS.forEach((param) => params.delete(param));
   return parsedUrl.toString();
 };
 
-// Transform Chrome extension URLs
+
+// Remove any Chrome Extension wrapper (primariy for Adobe's PDF viewer)
 const transformChromeExtensionURL = (url) => {
   const chromeExtensionPattern = /^chrome-extension:\/\/[^/]+\//;
   return chromeExtensionPattern.test(url) ? url.replace(chromeExtensionPattern, '') : url;
 };
+
+
+// Initialize the extension when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", initializeExtension);
+

@@ -9,5 +9,10 @@
   },
   "action": {
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "assets/simple_clipboard_icon_16.png",
+    "48": "assets/simple_clipboard_icon_48.png",
+    "128": "assets/simple_clipboard_icon_128.png"
   }
 }
