@@ -11,7 +11,7 @@ const copyFilteredUrlToClipboard = async () => {
   url = removeTrackingParams(url);
 
   navigator.clipboard.writeText(url).then(
-    () => console.log("Filtered URL copied to clipboard"),
+    () => window.close(),
     (err) => console.error("Failed to copy URL: ", err)
   );
 };
