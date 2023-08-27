@@ -7,7 +7,7 @@ const copyFilteredUrlToClipboard = async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   let url = tab.url;
 
-  url = transformChromeExtensionURL(url);
+  url = removeChromeExtensionWrapper(url);
   url = removeTrackingParams(url);
 
   navigator.clipboard.writeText(url).then(
@@ -17,20 +17,24 @@ const copyFilteredUrlToClipboard = async () => {
 };
 
 
-// Remove tracking parameters from the URL
-const TRACKING_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-const removeTrackingParams = (url) => {
-  const parsedUrl = new URL(url);
-  const params = parsedUrl.searchParams;
-  TRACKING_PARAMS.forEach((param) => params.delete(param));
-  return parsedUrl.toString();
+// Remove any Adobe's PDF viewer wrapper
+const removeChromeExtensionWrapper = (url) => {
+  if (url.startsWith("chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/")) {
+    return url.replace("chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/", "");
+  }
+  return url;
 };
 
 
-// Remove any Chrome Extension wrapper (primariy for Adobe's PDF viewer)
-const transformChromeExtensionURL = (url) => {
-  const chromeExtensionPattern = /^chrome-extension:\/\/[^/]+\//;
-  return chromeExtensionPattern.test(url) ? url.replace(chromeExtensionPattern, '') : url;
+// Remove tracking parameters from the URL
+const TRACKING_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+const GOOGLE_DOCS_PARAMS = ['pli'];
+const NOISE_PARAMS = [...TRACKING_PARAMS, ...GOOGLE_DOCS_PARAMS];
+const removeTrackingParams = (url) => {
+  const parsedUrl = new URL(url);
+  const params = parsedUrl.searchParams;
+  NOISE_PARAMS.forEach((param) => params.delete(param));
+  return parsedUrl.toString();
 };
 
 
