@@ -1,16 +1,19 @@
-const initializeExtension = () => {
+const initializeExtension = async () => {
   const copyUrlBtn = document.getElementById("copyUrlBtn");
-  copyUrlBtn.addEventListener("click", copyFilteredUrlToClipboard);
+  const cleanedUrlDiv = document.getElementById("cleanedUrl");
+  copyUrlBtn.addEventListener("click", () => copyFilteredUrlToClipboard(cleanedUrlDiv));
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const url = tab.url;
+
+  let cleanedUrl = removeChromeExtensionWrapper(url);
+  cleanedUrl = removeTrackingParams(url);
+  cleanedUrlDiv.innerText = url;
+
+  copyUrlBtn.addEventListener("click", () => copyFilteredUrlToClipboard(cleanedUrl));
 };
 
-const copyFilteredUrlToClipboard = async () => {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  let url = tab.url;
-
-  url = removeChromeExtensionWrapper(url);
-  url = removeTrackingParams(url);
-
-  navigator.clipboard.writeText(url).then(
+const copyFilteredUrlToClipboard = (cleanedUrl) => {
+  navigator.clipboard.writeText(cleanedUrl).then(
     () => window.close(),
     (err) => console.error("Failed to copy URL: ", err)
   );
@@ -40,4 +43,3 @@ const removeTrackingParams = (url) => {
 
 // Initialize the extension when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", initializeExtension);
-
