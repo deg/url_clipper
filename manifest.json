@@ -11,8 +11,8 @@
     "default_popup": "popup.html"
   },
   "icons": {
-    "16": "assets/simple_clipboard_icon_16.png",
-    "48": "assets/simple_clipboard_icon_48.png",
-    "128": "assets/simple_clipboard_icon_128.png"
+    "16": "assets/copy_url_icon_16.png",
+    "48": "assets/copy_url_icon_48.png",
+    "128": "assets/copy_url_icon_128.png"
   }
 }

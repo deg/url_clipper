@@ -1,0 +1,6 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" fill="#0000FF"/>
+  <rect x="8" y="8" rx="8" width="112" height="112" fill="#D0D0FF"/>
+  <text x="55" y="113" font-family="Verdana" font-size="136" text-anchor="middle" fill="#0000FF">C</text>
+  <text x="74" y="74" font-family="Verdana" font-size="36" text-anchor="middle" fill="#8080FF">-URL</text>
+</svg>
