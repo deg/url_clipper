@@ -7,7 +7,7 @@ const initializeExtension = async () => {
 
   let cleanedUrl = removeChromeExtensionWrapper(url);
   cleanedUrl = removeTrackingParams(url);
-  cleanedUrlDiv.innerText = url;
+  cleanedUrlDiv.innerText = cleanedUrl;
 
   copyUrlBtn.addEventListener("click", () => copyFilteredUrlToClipboard(cleanedUrl));
 };
