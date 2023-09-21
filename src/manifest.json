@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Copy URL to Clipboard",
+  "description": "DEG Vite toy",
+  "version": "1.0",
+  "description": "Copy the current tab's URL to clipboard",
+  "permissions": ["activeTab", "scripting", "notifications"],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "scissors_16.png",
+    "48": "scissors_48.png",
+    "128": "scissors_128.png"
+  }
+}
