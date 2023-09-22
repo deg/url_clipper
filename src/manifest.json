@@ -9,8 +9,8 @@
     "default_popup": "index.html"
   },
   "icons": {
-    "16": "scissors_16.png",
-    "48": "scissors_48.png",
-    "128": "scissors_128.png"
+    "16": "copy_url_icon_16.png",
+    "48": "copy_url_icon_48.png",
+    "128": "copy_url_icon_128.png"
   }
 }
