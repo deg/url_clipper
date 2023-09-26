@@ -1,9 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Copy URL to Clipboard",
-  "description": "DEG Vite toy",
+  "name": "Copy Clean URL to Clipboard",
   "version": "1.0",
-  "description": "Copy the current tab's URL to clipboard",
+  "description": "Copy the current tab's URL to clipboard after removing tracking parameters and other noise",
   "permissions": ["activeTab", "scripting", "notifications"],
   "action": {
     "default_popup": "index.html"
